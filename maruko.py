@@ -18,10 +18,13 @@ except ImportError:
 
 def fetch_soup(url):
     request = ulib.Request(url)
-    request.add_header('User-Agent', 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1)')
+    request.add_header('User-Agent', 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 10.0)')
 
     try:
         html = ulib.urlopen(request)
+
+    except ulib.URLError, e:
+        print e.reason # [Errno 8] nodename nor servname provided, or not known
 
     except Exception, e:
         print('{0}, fetching {1}').format(e, url)
@@ -36,7 +39,6 @@ def fetch_file(url, dest_path):
         file_binary = ulib.urlopen(url).read()
 
     except Exception, e:
-        print()
         print('{0}, donwnloading from {1}').format(e, url)
         return
 
@@ -63,14 +65,14 @@ def parse_malwaredl(soup, dest_path):
     print('-- Found {0} urls'.format(len(description_soup)))
 
     for xml in description_soup:
-        url = 'http://' + str(xml).split(',')[0][19:]
+        url = 'http://' + xml.string.replace('&amp;', '&').split(',')[0][6:]
         fetch_file(url, dest_path)
 
 
 def parse_vxvault(soup, dest_path):
     print('- Parcing from VXVault')
 
-    url_list = soup('pre')[0].string.split('\r\n')[4:-1]
+    url_list = soup('pre')[0].string.replace('&amp;', '&').split('\r\n')[4:-1]
     print('-- Found {0} urls'.format(len(url_list)))
 
     for url in url_list:
@@ -83,8 +85,8 @@ def parse_malc0de(soup, dest_path):
     description_soup = soup('description')[1:]
     print('-- Found {0} urls'.format(len(description_soup)))
     for xml in description_soup:
-        host = xml.text.replace('&amp;', '&').split(',')[0][5:]
-        if host != '':
+        host = xml.string.replace('&amp;', '&').split(',')[0][5:]
+        if host is not None:
             url = 'http://' + host
             fetch_file(url, dest_path)
         else:
