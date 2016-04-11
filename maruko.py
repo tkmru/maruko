@@ -24,7 +24,8 @@ def fetch_soup(url):
         html = ulib.urlopen(request)
 
     except ulib.URLError, e:
-        print e.reason # [Errno 8] nodename nor servname provided, or not known
+        print('{0}, fetching {1}').format(e.reason, url)
+        return
 
     except Exception, e:
         print('{0}, fetching {1}').format(e, url)
@@ -37,6 +38,10 @@ def fetch_soup(url):
 def fetch_file(url, dest_path):
     try:
         file_binary = ulib.urlopen(url).read()
+
+    except ulib.URLError, e:
+        print('{0}, donwnloading from {1}').format(e.reason, url)
+        return
 
     except Exception, e:
         print('{0}, donwnloading from {1}').format(e, url)
@@ -84,6 +89,7 @@ def parse_malc0de(soup, dest_path):
 
     description_soup = soup('description')[1:]
     print('-- Found {0} urls'.format(len(description_soup)))
+
     for xml in description_soup:
         host = xml.string.replace('&amp;', '&').split(',')[0][5:]
         if host is not None:
@@ -104,6 +110,6 @@ if __name__ == '__main__':
     if args.path:
         dest_path = args.path[0]
 
+    parse_malc0de(fetch_soup('http://malc0de.com/rss'), dest_path)
     parse_malwaredl(fetch_soup('http://www.malwaredomainlist.com/hostslist/mdl.xml'), dest_path)
     parse_vxvault(fetch_soup('http://vxvault.siri-urz.net/URL_List.php'), dest_path)
-    parse_malc0de(fetch_soup('http://malc0de.com/rss'), dest_path)
