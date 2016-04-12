@@ -6,6 +6,7 @@ import hashlib
 import magic
 import os
 import argparse
+import sys
 
 try:
     import urllib2 as ulib
@@ -37,12 +38,12 @@ def fetch_soup(url):
     try:
         html = ulib.urlopen(request)
 
-    except ulib.URLError, e:
-        print('{0}, fetching {1}').format(e.reason, url)
+    except ulib.URLError as e:
+        print('{0}, fetching {1}'.format(e.reason, url))
         return
 
-    except Exception, e:
-        print('{0}, fetching {1}').format(e, url)
+    except Exception as e:
+        print('{0}, fetching {1}'.format(e, url))
         return
 
     soup = BeautifulSoup(html, 'html.parser')
@@ -53,15 +54,15 @@ def fetch_file(url, dest_path):
     try:
         file_binary = ulib.urlopen(url).read()
 
-    except ulib.URLError, e:
-        print('{0}, donwnloading from {1}').format(e.reason, url)
+    except ulib.URLError as e:
+        print('{0}, donwnloading from {1}'.format(e.reason, url))
         return
 
-    except Exception, e:
-        print('{0}, donwnloading from {1}').format(e, url)
+    except Exception as e:
+        print('{0}, donwnloading from {1}'.format(e, url))
         return
 
-    filetype = magic.from_buffer(file_binary, mime=True).split(' ')[0]
+    filetype = magic.from_buffer(file_binary, mime=True).decode(sys.stdin.encoding).split(' ')[0]
     file_md5 = hashlib.md5(file_binary).hexdigest()
 
     dest_filetype_path = dest_path + filetype
