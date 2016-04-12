@@ -43,7 +43,7 @@ github
 ::
 
     $ git clone git@github.com:tkmru/maruko.git
-    $ cd im2pdf
+    $ cd maruko
     $ python setup.py install
 
 Usage
@@ -53,14 +53,14 @@ Usage
 
 ::
 
-    $ sudo python maruko.py
+    $ sudo maruko
 
 
 | '-p' change stored path.
 
 ::
 
-    $ sudo python maruko.py -p <path>
+    $ sudo maruko -p <path>
 
 
 License
