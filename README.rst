@@ -10,6 +10,42 @@ maruko
 - VX Vault: http://vxvault.siri-urz.net/URL_List.php
 - Malc0de: http://malc0de.com/rss
 
+Installation
+============
+
+------------
+Dependencies
+------------
+
+| Maruko use python-magic module. `python-magic <https://github.com/ahupp/python-magic>`_ is a python interface to the libmagic file type identification library. It is dependent on libmagic. You need to install *libmagic* before you install maruko.
+
+| On OSX:
+
+- When using Homebrew: `brew install libmagic`
+- When using macports: `port install file`
+
+
+----
+PyPI
+----
+The recommended process is to install the PyPI package, as it allows easily staying update.
+
+::
+
+    $ pip install maruko
+
+------
+github
+------
+| Download from https://github.com/tkmru/maruko/.
+| Let's push star!!
+
+::
+
+    $ git clone git@github.com:tkmru/maruko.git
+    $ cd im2pdf
+    $ python setup.py install
+
 Usage
 =====
 
