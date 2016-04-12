@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding: UTF-8
 
-
-__description__ = 'malware crawler'
-
 from bs4 import BeautifulSoup
 import hashlib
 import magic
@@ -48,7 +45,7 @@ def fetch_soup(url):
         print('{0}, fetching {1}').format(e, url)
         return
 
-    soup = BeautifulSoup(html, "html.parser")
+    soup = BeautifulSoup(html, 'html.parser')
     return soup
 
 
@@ -118,7 +115,7 @@ def parse_malc0de(soup, dest_path):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(__description__)
+    parser = argparse.ArgumentParser(description='malware crawler')
     parser.add_argument('-p', '--path', nargs=1, metavar='dest_path', help='set destination path')
     args = parser.parse_args()
 
