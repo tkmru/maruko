@@ -1,20 +1,6 @@
 #!/usr/bin/env python
 # coding: UTF-8
 
-'''
-　　　　　　  , - ― ‐ -  ､
-　　　　　 ／　　　　　　 　 ＼
-　　　　 /　　　 ∧　∧　 , 　  ヽ
-　　 　/　 ｌ＼:/- ∨ - ∨､!　, ',
-　　　/ ハ.|/　　　 　 　 　 ∨|,､ﾍ
-　  |ヽ' ヽ　　　●　  　●　　　 ﾉ! l
-  〈｢!ヽﾊ._　　   ＿＿_　  　_.lﾉ　|
-　　く´ ＼.）　   ヽ. ノ　 　（.ﾉ ￣
-　　　＼　｀'ｰ-､ ＿＿_,_ - '´
-　 　　 　｀ - ､ ||V V||　＼
-             | ||   ||  l＼
-'''
-
 
 __description__ = 'malware crawler'
 
@@ -29,6 +15,22 @@ try:
 
 except ImportError:
     import urllib.request as ulib
+
+
+def display_maruko():
+    print('''
+　　　　　　  , - ― ‐ -  ､
+　　　　　 ／　　　　　　 　 ＼
+　　　　 /　　　 ∧　∧　 , 　  ヽ      __________________________________________________
+　　 　/　 ｌ＼:/- ∨ - ∨､!　, ',     |                                                 |
+　　　/ ハ.|/　　　 　 　 　 ∨|,､ﾍ   | I'm Maruko. I'm going to crawl malware from now.|
+　  |ヽ' ヽ　　　●　  　●　　　 ﾉ! l |_________________________________________________|
+  〈｢!ヽﾊ._　　   ＿＿_　  　_.lﾉ　|
+　　く´ ＼.）　   ヽ. ノ　 　（.ﾉ ￣
+　　　＼　｀'ｰ-､ ＿＿_,_ - '´
+　 　　 　｀ - ､ ||V V||　＼
+               | ||   ||  l＼
+    ''')
 
 
 def fetch_soup(url):
@@ -119,6 +121,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(__description__)
     parser.add_argument('-p', '--path', nargs=1, metavar='dest_path', help='set destination path')
     args = parser.parse_args()
+
+    display_maruko()
 
     dest_path = '/opt/malware/unsorted/'
 
