@@ -19,11 +19,11 @@ def display_maruko():
     print('''
 　　　　　　  , - ― ‐ -  ､
 　　　　　 ／　　　　　　 　 ＼
-　　　　 /　　　 ∧　∧　 , 　  ヽ      __________________________________________________
-　　 　/　 ｌ＼:/- ∨ - ∨､!　, ',     |                                                 |
-　　　/ ハ.|/　　　 　 　 　 ∨|,､ﾍ   | I'm Maruko. I'm going to crawl malware from now.|
-　  |ヽ' ヽ　　　●　  　●　　　 ﾉ! l |_________________________________________________|
-  〈｢!ヽﾊ._　　   ＿＿_　  　_.lﾉ　|
+　　　　 /　　　 ∧　∧　 , 　  ヽ      ______________________________________
+　　 　/　 ｌ＼:/- ∨ - ∨､!　, ',     |                                     |
+　　　/ ハ.|/　　　 　 　 　 ∨|,､ﾍ   | Hi, I'm Maruko.                     |
+　  |ヽ' ヽ　　　●　  　●　　　 ﾉ! l | I'm going to crawl malware from now.|
+  〈｢!ヽﾊ._　　   ＿＿_　  　_.lﾉ　| |_____________________________________|
 　　く´ ＼.）　   ヽ. ノ　 　（.ﾉ ￣
 　　　＼　｀'ｰ-､ ＿＿_,_ - '´
 　 　　 　｀ - ､ ||V V||　＼
@@ -127,6 +127,6 @@ if __name__ == '__main__':
     if args.path:
         dest_path = args.path[0]
 
-    parse_malc0de(fetch_soup('http://malc0de.com/rss'), dest_path)
-    parse_malwaredl(fetch_soup('http://www.malwaredomainlist.com/hostslist/mdl.xml'), dest_path)
+    #parse_malc0de(fetch_soup('http://malc0de.com/rss'), dest_path)
+    #parse_malwaredl(fetch_soup('http://www.malwaredomainlist.com/hostslist/mdl.xml'), dest_path)
     parse_vxvault(fetch_soup('http://vxvault.siri-urz.net/URL_List.php'), dest_path)
