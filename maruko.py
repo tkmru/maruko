@@ -127,6 +127,6 @@ if __name__ == '__main__':
     if args.path:
         dest_path = args.path[0]
 
-    #parse_malc0de(fetch_soup('http://malc0de.com/rss'), dest_path)
-    #parse_malwaredl(fetch_soup('http://www.malwaredomainlist.com/hostslist/mdl.xml'), dest_path)
+    parse_malc0de(fetch_soup('http://malc0de.com/rss'), dest_path)
+    parse_malwaredl(fetch_soup('http://www.malwaredomainlist.com/hostslist/mdl.xml'), dest_path)
     parse_vxvault(fetch_soup('http://vxvault.siri-urz.net/URL_List.php'), dest_path)
