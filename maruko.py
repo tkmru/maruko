@@ -36,14 +36,14 @@ def fetch_soup(url):
     request.add_header('User-Agent', 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 10.0)')
 
     try:
-        html = ulib.urlopen(request)
+        html = ulib.urlopen(request, timeout=10)
 
     except ulib.URLError as e:
         print('{0}, fetching {1}'.format(e.reason, url))
         return
 
     except Exception as e:
-        print('failed to fetch {1}'.format(url))
+        print('failed to fetch {0}'.format(url))
         return
 
     soup = BeautifulSoup(html, 'html.parser')
@@ -52,14 +52,14 @@ def fetch_soup(url):
 
 def fetch_file(url, dest_path):
     try:
-        file_binary = ulib.urlopen(url).read()
+        file_binary = ulib.urlopen(url, timeout=10).read()
 
     except ulib.URLError as e:
         print('{0}, donwnloading from {1}'.format(e.reason, url))
         return
 
     except Exception as e:
-        print('failed to donwnload from {1}'.format(url))
+        print('failed to donwnload from {0}'.format(url))
         return
 
     filetype = magic.from_buffer(file_binary, mime=True).decode(sys.stdin.encoding).split(' ')[0]
