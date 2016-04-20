@@ -105,7 +105,7 @@ def parse_malc0de(soup, dest_path):
     description_soup = soup('description')[1:]
     print('-- Found {0} urls'.format(len(description_soup)))
 
-    for xml in description_soup[125:]:
+    for xml in description_soup:
         host = xml.string.replace('&amp;', '&').split(',')[0][5:]
         if host is not None:
             url = 'http://' + host
