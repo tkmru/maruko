@@ -65,8 +65,8 @@ def fetch_file(url, dest_path):
     filetype = magic.from_buffer(file_binary, mime=True).decode(sys.stdin.encoding).split(' ')[0]
     file_md5 = hashlib.md5(file_binary).hexdigest()
 
-    dest_filetype_path = dest_path + filetype
-    dest_file_path = dest_filetype_path + '/' + str(file_md5)
+    dest_filetype_path = os.path.join(dest_path, filetype)
+    dest_file_path = os.path.join(dest_filetype_path, str(file_md5))
 
     if not os.path.exists(dest_filetype_path):
         os.makedirs(dest_filetype_path)
