@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: UTF-8
 
+from __future__ import print_function
 from bs4 import BeautifulSoup
 import hashlib
 import magic
@@ -43,7 +44,8 @@ def fetch_soup(url):
         return
 
     except Exception as e:
-        print('failed to fetch {0}'.format(url))
+        print('failed to fetch ', end='')
+        print(url)
         return
 
     soup = BeautifulSoup(html, 'html.parser')
@@ -59,7 +61,8 @@ def fetch_file(url, dest_path):
         return
 
     except Exception as e:
-        print('failed to donwnload from {0}'.format(url))
+        print('failed to donwnload from ', end='')
+        print(url)
         return
 
     filetype = magic.from_buffer(file_binary, mime=True).decode(sys.stdin.encoding).split(' ')[0]
@@ -127,6 +130,6 @@ if __name__ == '__main__':
     if args.path:
         dest_path = args.path[0]
 
-    parse_malc0de(fetch_soup('http://malc0de.com/rss'), dest_path)
     parse_malwaredl(fetch_soup('http://www.malwaredomainlist.com/hostslist/mdl.xml'), dest_path)
     parse_vxvault(fetch_soup('http://vxvault.siri-urz.net/URL_List.php'), dest_path)
+    parse_malc0de(fetch_soup('http://malc0de.com/rss'), dest_path)
