@@ -16,16 +16,16 @@ except ImportError:
 
 
 def display_maruko():
-    print('''
+    print(u'''
 　　　　　　  , - ― ‐ -  ､
-　　　　　 ／　　　　　　 　 ＼
-　　　　 /　　　 ∧　∧　 , 　  ヽ      ______________________________________
+　　　　　 ／　　　　　　  ＼
+　　　　 /　　　 ∧　∧　 , 　 ヽ      ______________________________________
 　　 　/　 ｌ＼:/- ∨ - ∨､!　, ',     |                                     |
 　　　/ ハ.|/　　　 　 　 　 ∨|,､ﾍ   | Hi, I'm Maruko.                     |
-　  |ヽ' ヽ　　　●　  　●　　　 ﾉ! l | I'm going to crawl malware from now.|
-  〈｢!ヽﾊ._　　   ＿＿_　  　_.lﾉ　| |_____________________________________|
-　　く´ ＼.）　   ヽ. ノ　 　（.ﾉ ￣
-　　　＼　｀'ｰ-､ ＿＿_,_ - '´
+　  |ヽ' ヽ　　　●　  　●　　　 ﾉ!l  | I'm going to crawl malware from now.|
+  〈｢!ヽﾊ._　　   ＿＿_　  　_.lﾉ _| |_____________________________________|
+　　く´ ＼.）　   ヽ. ノ　 （.ﾉ ￣
+　　　＼　｀'ｰ-､ ＿＿___ ,-'´
 　 　　 　｀ - ､ ||V V||　＼
                | ||   ||  l＼
     ''')
@@ -43,7 +43,7 @@ def fetch_soup(url):
         return
 
     except Exception as e:
-        print('{0}, fetching {1}'.format(e, url))
+        print('failed to fetch {1}'.format(url))
         return
 
     soup = BeautifulSoup(html, 'html.parser')
@@ -59,7 +59,7 @@ def fetch_file(url, dest_path):
         return
 
     except Exception as e:
-        print('{0}, donwnloading from {1}'.format(e, url))
+        print('failed to donwnload from {1}'.format(url))
         return
 
     filetype = magic.from_buffer(file_binary, mime=True).decode(sys.stdin.encoding).split(' ')[0]
@@ -105,7 +105,7 @@ def parse_malc0de(soup, dest_path):
     description_soup = soup('description')[1:]
     print('-- Found {0} urls'.format(len(description_soup)))
 
-    for xml in description_soup:
+    for xml in description_soup[125:]:
         host = xml.string.replace('&amp;', '&').split(',')[0][5:]
         if host is not None:
             url = 'http://' + host
